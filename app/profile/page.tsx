@@ -4,7 +4,7 @@ import Profile from "@/components/Profile"
 const page = async() => {
   const session = await auth()
   const id = session?.user?.id
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${id}/posts`, {cache: 'no-store'})
+  const res = await fetch(`/api/users/${id}/posts`, {cache: 'no-store'})
   const {user, posts} = await res.json()
 
   return (
