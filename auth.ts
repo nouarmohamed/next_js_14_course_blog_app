@@ -10,7 +10,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth ({
   callbacks:{
     async session({session}) {
       await connectToDB()
-      console.log('nouar')
       const user = await User.findOne({email: session.user.email})
       session.user.id = user._id.toString()
       return session

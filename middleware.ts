@@ -9,7 +9,6 @@ export default auth((req) => {
     const isLoggedIn = !!req.auth
 
     if(url === '/'){
-        console.log("mohamed")
         return NextResponse.next()
     }
 
