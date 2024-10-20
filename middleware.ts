@@ -12,6 +12,14 @@ export default auth((req) => {
         return NextResponse.next()
     }
 
+    if (url.startsWith('/api')) {
+        return NextResponse.next()
+    }
+
+    if(!isLoggedIn){
+        return NextResponse.redirect(new URL('/api/auth/signin', req.url))
+    }
+    return NextResponse.next()
 })
  
 // Optionally, don't invoke Middleware on some paths
