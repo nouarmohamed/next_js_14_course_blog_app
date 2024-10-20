@@ -4,7 +4,15 @@ import NextAuth from "next-auth"
 
 const { auth } = NextAuth(authConfig)
 
+export default auth((req) => {
+    const url = req.nextUrl.pathname
+    const isLoggedIn = !!req.auth
 
+    if(url === '/'){
+        return NextResponse.next()
+    }
+
+})
  
 // Optionally, don't invoke Middleware on some paths
 export const config = {
