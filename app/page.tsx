@@ -2,7 +2,7 @@ import Card from "@/components/Card";
 import Link from "next/link";
 
 const page = async()=>{
-  let res = await fetch(`/api/posts`,{cache:'no-store'})
+  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`,{cache:'no-store'})
   
   if (!res.ok) {
     console.error("Failed to fetch posts:", res.statusText);
