@@ -1,32 +1,9 @@
-'use client'
 import Card from "@/components/Card"; 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const page = async()=>{
-  const [posts, setPosts] = useState<Post[]>([]); // حالة لتخزين المنشورات
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch(`api/posts`, {
-          cache: 'no-store'
-        });
-
-        if (!res.ok) {
-          throw new Error(`Failed to fetch posts: ${res.statusText}`);
-        }
-
-        const data = await res.json();
-        setPosts(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchPosts(); // جلب البيانات عند تحميل المكون
-  }, []);
-
+  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`)
+  let posts = await res.json()
   
   return (
     <>
