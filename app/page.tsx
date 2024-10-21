@@ -1,18 +1,11 @@
 import Card from "@/components/Card"; 
-import { connectToDB } from "@/utils/database";
-import Post from "@/utils/models/post";
 import Link from "next/link";
 
 const page = async()=>{
-  let posts = [];
-
-  try {
-    // الاتصال بقاعدة البيانات مباشرة وجلب المنشورات
-    await connectToDB();
-    posts = await Post.find({}).populate('author').sort({ createAt: 'desc' }); // جلب جميع المنشورات
-  } catch (error) {
-    console.error("Failed to fetch posts:", error);
-  }
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {cache: 'no-store'})
+  const posts = await res.json()
+  console.log('nouar', posts)
+  
   return (
     <>
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
