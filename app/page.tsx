@@ -1,8 +1,12 @@
 import Card from "@/components/Card"; 
 import Link from "next/link";
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
+
 const page = async()=>{
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, { cache: 'no-store' });
+  if (!res.ok) {
+    console.log('Failed to find posts');
+}
   const posts = await res.json()
   
   return (

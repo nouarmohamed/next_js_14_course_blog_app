@@ -6,6 +6,9 @@ export const GET = async (req: Request) => {
     try {
         await connectToDB();
         const posts = await Post.find({}).populate('author');
+        if (!posts) {
+            return console.log('no posts here');
+        }
         return NextResponse.json(posts, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: "Failed to fetch posts"}, { status: 500 });
