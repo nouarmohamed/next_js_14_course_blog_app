@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "BLOGO",
     description: "Blogo is a modern platform for sharing your stories and ideas with the world. Create, connect, and grow your audience with ease on a sleek, user-friendly blog space."
 }
-
+export const fetchCache = 'force-no-store';
 export default function RootLayout({
     children,
 }: Readonly<{
