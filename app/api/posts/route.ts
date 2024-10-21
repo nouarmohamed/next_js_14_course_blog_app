@@ -2,7 +2,7 @@ import { connectToDB } from "@/utils/database";
 import Post from "@/utils/models/post";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request) => {
+export const GET = async () => {
     try {
         await connectToDB();
         const posts = await Post.find({}).populate('author');
