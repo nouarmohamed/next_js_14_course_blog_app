@@ -1,10 +1,15 @@
 import Card from "@/components/Card"; 
+import { fetchPosts } from "@/utils/actions/posts";
 import Link from "next/link";
 
 const page = async()=>{
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {cache: 'no-store'})
-  const posts = await res.json()
-  
+  let posts = [];
+
+  try {
+    posts = await fetchPosts(); // استخدام الدالة لجلب المنشورات
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+  }
   return (
     <>
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
