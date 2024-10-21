@@ -1,17 +1,12 @@
 import Card from "@/components/Card"; 
+import { connectToDB } from "@/utils/database";
+import Post from "@/utils/models/post";
 import Link from "next/link";
 export const dynamic = 'force-dynamic';
 
 const page = async()=>{
-  // Use relative path for fetch
-  const res = await fetch('/api/posts', { cache: 'no-store' });
-
-  if (!res.ok) {
-    console.error('Failed to fetch posts', res.status);
-    return []; // Handle the error appropriately
-  }
-
-  const posts = await res.json();
+  await connectToDB();
+  const posts = await Post.find({}).populate('author');
   
   return (
     <>
