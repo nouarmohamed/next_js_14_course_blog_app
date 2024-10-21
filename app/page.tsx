@@ -2,8 +2,8 @@ import Card from "@/components/Card";
 import Link from "next/link";
 
 const page = async()=>{
-  let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {cache: 'no-store'})
-  let posts = await res.json()
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {cache: 'no-store'})
+  const posts = await res.json()
   
   return (
     <>
