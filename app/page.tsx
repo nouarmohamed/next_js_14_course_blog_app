@@ -3,12 +3,15 @@ import Link from "next/link";
 export const dynamic = 'force-dynamic';
 
 const page = async()=>{
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, { cache: 'no-store' });
-  console.log(`Response Status mohamed: ${res.status}`)
+  // Use relative path for fetch
+  const res = await fetch('/api/posts', { cache: 'no-store' });
+
   if (!res.ok) {
-    console.error(`Failed to find posts, status code: ${res.status}`);
-}
-  const posts = await res.json()
+    console.error('Failed to fetch posts', res.status);
+    return []; // Handle the error appropriately
+  }
+
+  const posts = await res.json();
   
   return (
     <>
