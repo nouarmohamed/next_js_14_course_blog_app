@@ -11,7 +11,7 @@ const page = async({params}: {params:Params}) => {
 
     return (
         <div className="min-h-screen pt-24 text-gray-900">
-            <div className="max-w-4xl mx-auto py-12 px-6">
+            <div className="max-w-4xl mx-auto py-12 sm:px-6 px-3">
                 <div className="flex flex-col gap-10 justify-between h-full border border-gray-500 sm:p-10 p-5 rounded-xl shadow-2xl">
                     <div>
                         <h1 className="sm:text-5xl text-3xl font-extrabold text-center text-gray-800"> {post.title}
