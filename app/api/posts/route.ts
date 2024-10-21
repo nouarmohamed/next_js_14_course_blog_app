@@ -7,7 +7,7 @@ export const GET = async (req: Request) => {
         await connectToDB();
         const posts = await Post.find({}).populate('author');
         if (!posts) {
-            return console.log('no posts here');
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
         }
         return NextResponse.json(posts, { status: 200 });
     } catch (error) {

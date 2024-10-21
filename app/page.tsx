@@ -4,8 +4,9 @@ export const dynamic = 'force-dynamic';
 
 const page = async()=>{
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, { cache: 'no-store' });
+  console.log(`Response Status mohamed: ${res.status}`)
   if (!res.ok) {
-    console.log('Failed to find posts');
+    console.error(`Failed to find posts, status code: ${res.status}`);
 }
   const posts = await res.json()
   
