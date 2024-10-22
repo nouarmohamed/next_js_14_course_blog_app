@@ -2,11 +2,10 @@ import Card from "@/components/Card";
 import { connectToDB } from "@/utils/database";
 import Post from "@/utils/models/post";
 import Link from "next/link";
-export const dynamic = 'force-dynamic';
 
 const page = async()=>{
   await connectToDB();
-  const posts = await Post.find({}).populate('author');
+  const posts = await Post.find({}).populate('author').sort({'createAt': -1});
   
   return (
     <>
